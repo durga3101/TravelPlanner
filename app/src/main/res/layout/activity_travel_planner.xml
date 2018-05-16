@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
               android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -10,19 +11,21 @@
               android:gravity="center_horizontal">
   <EditText
       android:id="@+id/distance"
-      android:hint="Total Distance"
+      android:hint="@string/totalDistance"
       android:gravity="center_horizontal"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:inputType="number"/>
 
-  <TextView
-      android:id="@+id/time"
-      android:text="Time Needed = "
+
+  <EditText
+      android:id="@+id/velocity"
+      android:hint="@string/velocity"
       android:gravity="center_horizontal"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="10dp"/>
+      android:inputType="number"/>
+
 
   <Button
       android:id="@+id/calculate"
@@ -31,5 +34,27 @@
       android:layout_marginTop="20dp"
       android:text="@string/calculate"
       android:onClick="calculate"/>
+
+  <TextView
+      android:id="@+id/timeWithBuffer"
+      android:text="@string/totalTime"
+      android:gravity="center_horizontal"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"/>
+
+  <Button
+      android:id="@+id/captureImage"
+      android:layout_width="200dp"
+      android:layout_height="50dp"
+      android:layout_marginTop="20dp"
+      android:text="@string/captureImage"
+      android:onClick="captureImage"/>
+
+  <ImageView
+      android:id="@+id/imageView"
+      android:layout_width="match_parent"
+      android:layout_height="300px"
+      android:src="@android:drawable/ic_menu_report_image" />
 </LinearLayout>
 

@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">TravelPlanner</string>
+    <string name="title_activity_travel_planner">TravelPlannerActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="calculate">గణించు</string>
+    <string name="captureImage">ఫోటోను క్లిక్ చేయండి</string>
+    <string name="totalTime">సమయం = </string>
+    <string name="velocity">వేగం</string>
+    <string name="totalDistance">దూరం</string>
+</resources>
