@@ -3,6 +3,8 @@ package android.bootcamp.travelplanner;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import java.util.Objects;
+
 @Entity
 public class TravelPlan {
 
@@ -30,4 +32,17 @@ public class TravelPlan {
     public void setTime(int time) { this.time = time;}
     public int getTimeWithBuffer() { return timeWithBuffer; }
     public void setTimeWithBuffer(int timeWithBuffer) { this.timeWithBuffer = timeWithBuffer; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TravelPlan that = (TravelPlan) o;
+        return distance == that.distance &&
+                velocity == that.velocity &&
+                time == that.time &&
+                timeWithBuffer == that.timeWithBuffer;
+    }
+
+    @Override public int hashCode() { return Objects.hash(distance, velocity, time, timeWithBuffer); }
 }

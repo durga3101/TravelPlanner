@@ -19,12 +19,14 @@ public class TravelPlannerActivity extends Activity implements TravelPlannerView
   public static final int TIME_ACTIVITY_REQUEST_CODE = 2831;
   public static final int CAMERA_REQUEST_CODE = 1105;
   private TravelPlannerPresenter presenter;
+  private TravelPlannerRepository repository;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_travel_planner);
-    presenter = new TravelPlannerPresenter(this);
+    repository = new TravelPlannerRepository(getApplicationContext());
+    presenter = new TravelPlannerPresenter(this, repository);
   }
 
   public void calculate(View view) {
@@ -34,22 +36,11 @@ public class TravelPlannerActivity extends Activity implements TravelPlannerView
   }
 
   public void save(View view){
-    int distance = Integer.parseInt(((EditText) findViewById(R.id.distance)).getText().toString());
-    int velocity = Integer.parseInt(((EditText) findViewById(R.id.velocity)).getText().toString());
-    int time = Integer.parseInt(((TextView) findViewById(R.id.time)).getText().toString());
-    int timeWithBuffer = Integer.parseInt(((TextView) findViewById(R.id.time_with_buffer)).getText().toString());
-
-    final TravelPlannerDatabase db = Room.databaseBuilder(getApplicationContext(),
-            TravelPlannerDatabase.class, "travelplanner").allowMainThreadQueries().build();
-
-
-    db.travelPlanDao().insertAll(new TravelPlan(distance, velocity, time, timeWithBuffer));
-
-    List<TravelPlan> travelPlanList =  db.travelPlanDao().getAll();
-    System.out.println("******************" + travelPlanList.get(travelPlanList.size()-1).getDistance());
-    System.out.println("******************" + travelPlanList.get(travelPlanList.size()-1).getVelocity());
-    System.out.println("******************" + travelPlanList.get(travelPlanList.size()-1).getTime());
-    System.out.println("******************" + travelPlanList.get(travelPlanList.size()-1).getTimeWithBuffer());
+    String distance = (((EditText) findViewById(R.id.distance)).getText().toString());
+    String velocity = (((EditText) findViewById(R.id.velocity)).getText().toString());
+    String time = (((TextView) findViewById(R.id.time)).getText().toString());
+    String timeWithBuffer = (((TextView) findViewById(R.id.time_with_buffer)).getText().toString());
+    presenter.save(distance, velocity, time, timeWithBuffer);
   }
 
   @Override
