@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -58,8 +57,7 @@ public class TravelPlannerActivity extends Activity implements TravelPlannerView
     super.onActivityResult(requestCode, resultCode, data);
     if(resultCode == RESULT_OK) {
       if(requestCode == TIME_ACTIVITY_REQUEST_CODE){
-        TextView resultView = (TextView) findViewById(R.id.time_with_buffer);
-        resultView.setText(String.valueOf(data.getIntExtra(TimeActivity.TIME_WITH_BUFFER, -1)));
+          presenter.processBufferReturned(data.getStringExtra(TimeActivity.TIME_WITH_BUFFER));
       } else {
         ImageView imageView = findViewById(R.id.capturedImage);
         imageView.setImageBitmap((Bitmap) data.getExtras().get("data"));
@@ -91,4 +89,11 @@ public class TravelPlannerActivity extends Activity implements TravelPlannerView
     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
     startActivityForResult(intent, CAMERA_REQUEST_CODE );
   }
+
+    @Override
+    public void displayBuffer(String buffer) {
+        TextView resultView = findViewById(R.id.time_with_buffer);
+        resultView.setText(buffer);
+
+    }
 }

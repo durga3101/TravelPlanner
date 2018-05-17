@@ -25,7 +25,7 @@ public class TimeActivity extends Activity {
                              Integer.parseInt(bufferTextView.getText().toString());
 
         Intent resultIntent = new Intent();
-        resultIntent.putExtra(this.TIME_WITH_BUFFER, timeWithBuffer);
+        resultIntent.putExtra(this.TIME_WITH_BUFFER, String.valueOf(timeWithBuffer));
         setResult(RESULT_OK, resultIntent);
         finish();
 

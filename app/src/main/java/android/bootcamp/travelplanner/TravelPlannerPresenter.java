@@ -17,9 +17,13 @@ public class TravelPlannerPresenter {
         view.launchTimeActivityWithTimeParameter(String.valueOf(time));
     }
 
-
     public void capture() {
         view.launchCamera();
+    }
+
+
+    public void processBufferReturned(String buffer) {
+        view.displayBuffer(buffer);
     }
 }
 

@@ -42,4 +42,11 @@ public class TravelPlannerPresenterTest {
 
     }
 
+    @Test
+    public void displayBufferOnBeingReturnedFromTimeActivity(){
+        presenter.processBufferReturned("30");
+        verify(mockView).displayBuffer("30");
+
+    }
+
 }
