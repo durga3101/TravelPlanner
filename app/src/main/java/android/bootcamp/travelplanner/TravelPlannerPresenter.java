@@ -18,6 +18,9 @@ public class TravelPlannerPresenter {
     }
 
 
+    public void capture() {
+        view.launchCamera();
+    }
 }
 
 

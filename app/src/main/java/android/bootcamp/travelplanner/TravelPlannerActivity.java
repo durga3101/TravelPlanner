@@ -69,15 +69,13 @@ public class TravelPlannerActivity extends Activity implements TravelPlannerView
   }
 
   public void capture(View view) {
-    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-    startActivityForResult(intent, CAMERA_REQUEST_CODE );
+    presenter.capture();
   }
 
   @Override
   public void displayTime(String time) {
     TextView resultView = (TextView) findViewById(R.id.time);
     resultView.setText(time);
-
   }
 
   @Override
@@ -86,5 +84,11 @@ public class TravelPlannerActivity extends Activity implements TravelPlannerView
     intent.putExtra("time", time);
     startActivityForResult(intent, TIME_ACTIVITY_REQUEST_CODE);
 
+  }
+
+  @Override
+  public void launchCamera() {
+    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+    startActivityForResult(intent, CAMERA_REQUEST_CODE );
   }
 }
