@@ -9,4 +9,5 @@
     <string name="totalTime">Total Time = </string>
     <string name="velocity">velocity</string>
     <string name="totalDistance">Total Distance</string>
+    <string name="save">save</string>
 </resources>
