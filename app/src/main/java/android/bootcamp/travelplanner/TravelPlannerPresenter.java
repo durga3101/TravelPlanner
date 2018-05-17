@@ -14,6 +14,7 @@ public class TravelPlannerPresenter {
         int time = distance/velocity;
 
         view.displayTime(String.valueOf(time));
+        view.launchTimeActivityWithTimeParameter(String.valueOf(time));
     }
 
 

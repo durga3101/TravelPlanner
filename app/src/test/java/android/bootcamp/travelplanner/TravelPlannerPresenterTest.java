@@ -15,4 +15,13 @@ public class TravelPlannerPresenterTest {
         presenter.calculate("50", "10");
         verify(mockView).displayTime("5");
     }
+
+    @Test
+    public void shouldCalculateTimeAndSendItToTimeActivity(){
+        TravelPlannerView mockView = mock(TravelPlannerView.class);
+        TravelPlannerPresenter presenter =  new TravelPlannerPresenter(mockView);
+        presenter.calculate("50", "10");
+        verify(mockView).launchTimeActivityWithTimeParameter("5");
+    }
+
 }
