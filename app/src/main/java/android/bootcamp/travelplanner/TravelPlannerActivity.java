@@ -15,28 +15,23 @@ import android.widget.TextView;
 import java.util.List;
 
 
-public class TravelPlannerActivity extends Activity {
+public class TravelPlannerActivity extends Activity implements TravelPlannerView {
 
   public static final int TIME_ACTIVITY_REQUEST_CODE = 2831;
   public static final int CAMERA_REQUEST_CODE = 1105;
+  private TravelPlannerPresenter presenter;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_travel_planner);
+    presenter = new TravelPlannerPresenter(this);
   }
 
   public void calculate(View view) {
-    int distance = Integer.parseInt(((EditText) findViewById(R.id.distance)).getText().toString());
-    int velocity = Integer.parseInt(((EditText) findViewById(R.id.velocity)).getText().toString());
-    int result = distance / velocity;
-    TextView resultView = (TextView) findViewById(R.id.time);
-    String resultString = String.valueOf(result);
-    resultView.setText(resultString);
-
-    Intent intent = new Intent(this, TimeActivity.class);
-    intent.putExtra("time", result);
-    startActivityForResult(intent, TIME_ACTIVITY_REQUEST_CODE);
+    String distanceString = ((EditText) findViewById(R.id.distance)).getText().toString();
+    String velocityString = ((EditText) findViewById(R.id.velocity)).getText().toString();
+    presenter.calculate(distanceString, velocityString);
   }
 
   public void save(View view){
@@ -76,5 +71,20 @@ public class TravelPlannerActivity extends Activity {
   public void capture(View view) {
     Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
     startActivityForResult(intent, CAMERA_REQUEST_CODE );
+  }
+
+  @Override
+  public void displayTime(String time) {
+    TextView resultView = (TextView) findViewById(R.id.time);
+    resultView.setText(time);
+
+  }
+
+  @Override
+  public void launchTimeActivityWithTimeParameter(String time) {
+    Intent intent = new Intent(this, TimeActivity.class);
+    intent.putExtra("time", time);
+    startActivityForResult(intent, TIME_ACTIVITY_REQUEST_CODE);
+
   }
 }

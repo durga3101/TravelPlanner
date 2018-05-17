@@ -15,7 +15,7 @@ public class TimeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time);
         TextView timeTextView = (TextView) findViewById(R.id.time_new_activity);
-        timeTextView.setText(String.valueOf(getIntent().getIntExtra("time", -1)));
+        timeTextView.setText((getIntent().getStringExtra("time")));
     }
 
     public void calculateWithBuffer(View view) {
